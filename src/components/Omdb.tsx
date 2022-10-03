@@ -78,9 +78,9 @@ const Omdb = () => {
             <hr className="" />
             {searchResult?.Response === "True" ? (
               <>
-                <ResultTable SearchResult={searchResult} />
+                <ResultTable searchResult={searchResult} />
                 <PaginateResult
-                  SearchResult={searchResult}
+                  searchResult={searchResult}
                   setPageNum={setPageNum}
                   pageNum={pageNum}
                 />
