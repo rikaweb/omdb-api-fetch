@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
-import { SearchResult } from "../types/SearchResult";
+import { useContext, useEffect, useState } from "react";
 import ReactPaginate from 'react-paginate';
-const PaginateResult = (props: {
-  SearchResult: SearchResult;
-  setPageNum: React.Dispatch<React.SetStateAction<number>>;
-  pageNum: number;
-}): JSX.Element => {
-  const { SearchResult, setPageNum, pageNum } = props;
+import { ResultContext } from "./Omdb";
+const PaginateResult = (): JSX.Element => {
+  const {pageNum,setPageNum,searchResult} = useContext(ResultContext)
   const [pageCount, setPageCount] = useState(0);
-  const [totalResult, setTotalResult] = useState(+SearchResult.totalResults);
+  const [totalResult, setTotalResult] = useState(+searchResult!.totalResults!);
 
  
   useEffect(() => {
-   setTotalResult(+SearchResult.totalResults);
+   setTotalResult(+searchResult!.totalResults!);
   
-  }, [SearchResult]);
+  }, [searchResult]);
   useEffect(() => {
     
      setPageCount(Math.ceil(totalResult / 10));
@@ -39,7 +35,7 @@ const PaginateResult = (props: {
               Showing{" "}
               <span className="font-medium">{(pageNum*10)+1}</span> to{" "}
               <span className="font-medium">{(pageNum+1)*10}</span> of{" "}
-              <span className="font-medium">{SearchResult.totalResults}</span>{" "}
+              <span className="font-medium">{searchResult?.totalResults}</span>{" "}
               results
             </p>
           </div>

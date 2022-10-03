@@ -1,8 +1,14 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { ResultContextType } from "../types/ResultContext";
 import { SearchResult } from "../types/SearchResult";
 import PaginateResult from "./PaginateResult";
 import ResultTable from "./ResultTable";
+const iResultContext:ResultContextType = {
+    pageNum: 0,
+    setPageNum:  () => {},
+}
 
+export const ResultContext = createContext<ResultContextType>(iResultContext)
 const Omdb = () => {
   const [searchTerm, setSearchterm] = useState("");
   const [searchResult, setSearchResult] = useState<SearchResult>();
@@ -78,12 +84,11 @@ const Omdb = () => {
             <hr className="" />
             {searchResult?.Response === "True" ? (
               <>
-                <ResultTable SearchResult={searchResult} />
+                <ResultContext.Provider value={{pageNum,setPageNum,searchResult}}>
+                <ResultTable  />
                 <PaginateResult
-                  SearchResult={searchResult}
-                  setPageNum={setPageNum}
-                  pageNum={pageNum}
                 />
+                </ResultContext.Provider>
               </>
             ) : (
                 <div className="bg-gray-100">

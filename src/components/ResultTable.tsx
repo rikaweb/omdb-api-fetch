@@ -1,14 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { SearchResult } from "../types/SearchResult";
+import { useContext } from "react";
+import { ResultContext } from "./Omdb";
 
-const ResultTable=(props:{SearchResult:SearchResult}): JSX.Element =>{
-    const { SearchResult } = props;
+const ResultTable=(): JSX.Element =>{
+  const {searchResult} = useContext(ResultContext)
 return(
     <>
  
     <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 bg-gray-100 py-8 px-4">
-      {SearchResult.Search?.map((movie) => (
+      {searchResult?.Search?.map((movie) => (
         <li
           key={movie.imdbID}
           className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
