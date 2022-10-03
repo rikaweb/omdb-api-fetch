@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# Getting Started with  App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rename '.env.example' to '.env' and put your OMDB APi key instead of 'xxxxxxxx'
+
+### REACT_APP_OMDB_API_KEY=xxxxxxxx
+
+Then run:
+### `yarn`
+
+Then you can run project by  run:
+
+### `yarn start`
 
 ## Available Scripts
 
